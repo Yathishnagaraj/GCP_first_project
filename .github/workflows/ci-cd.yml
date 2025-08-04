@@ -52,6 +52,12 @@ jobs:
         install_components: 'kubectl'
         export_default_credentials: true
 
+    - name: Get GKE credentials
+      run: |
+        gcloud container clusters get-credentials finance-cluster \
+          --zone asia-south1-a \
+          --project ${{ secrets.GCP_PROJECT_ID }}
+
     # Step 8: Deploy to Kubernetes on GKE
     - name: Deploy to GKE
       run: |
