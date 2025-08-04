@@ -1,15 +1,16 @@
-name: CI/CD on GCP VM
+name: Build, Push & Deploy to GKE
 
 on:
   push:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
-  build-and-push:
+  build-push-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout Code
       uses: actions/checkout@v3
 
     - name: Set up Java
@@ -18,17 +19,33 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Build using Maven
-      run: mvn clean install
+    - name: Build with Maven
+      run: mvn clean package
 
-    - name: Docker build
-      run: docker build -t finance-me-app .
+    - name: Build Docker Image
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/finance-me-app:latest .
 
-    - name: Login & Push to DockerHub
+    - name: DockerHub Login & Push
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        docker tag finance-me-app $DOCKER_USERNAME/finance-me-app:latest
         docker push $DOCKER_USERNAME/finance-me-app:latest
+
+    - name: Setup gcloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Configure kubectl
+      uses: google-github-actions/setup-gcloud@v2
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        install_components: 'kubectl'
+        export_default_credentials: true
+
+    - name: Deploy to GKE
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
