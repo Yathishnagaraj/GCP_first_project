@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: finance-container
-        image: yourdockerhubid/finance-me-app:latest
+        image: yourdockerhubusername/finance-me-app:latest
         ports:
         - containerPort: 8080
