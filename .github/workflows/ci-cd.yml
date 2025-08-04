@@ -10,41 +10,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout code
     - name: Checkout Code
       uses: actions/checkout@v3
 
+    # Step 2: Set up Java environment
     - name: Set up Java
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: '17'
 
+    # Step 3: Build Spring Boot app
     - name: Build with Maven
-      run: mvn clean package
+      run: mvn clean package --no-transfer-progress
 
+    # Step 4: Build Docker image
     - name: Build Docker Image
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/finance-me-app:latest .
 
+    # Step 5: Push Docker image to DockerHub
     - name: Push to DockerHub
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
         docker push $DOCKER_USERNAME/finance-me-app:latest
 
+    # Step 6: Authenticate to Google Cloud (via service account JSON)
     - name: Authenticate to GCP
       uses: google-github-actions/auth@v2
       with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
-    - name: Set up gcloud + kubectl
+    # Step 7: Set up gcloud and kubectl
+    - name: Set up gcloud & kubectl
       uses: google-github-actions/setup-gcloud@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         install_components: 'kubectl'
         export_default_credentials: true
 
+    # Step 8: Deploy to Kubernetes on GKE
     - name: Deploy to GKE
       run: |
         kubectl apply -f k8s/deployment.yaml
