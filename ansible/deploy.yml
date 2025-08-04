@@ -4,11 +4,11 @@
     - name: Install Docker
       apt:
         name: docker.io
-        state: present
         update_cache: yes
+        state: present
 
     - name: Pull Docker image
-      command: docker pull yourdockerhubid/finance-me-app:latest
+      command: docker pull yourdockerid/finance-me-app:latest
 
     - name: Run Docker container
-      command: docker run -d -p 8080:8080 yourdockerhubid/finance-me-app:latest
+      command: docker run -d -p 8080:8080 yourdockerid/finance-me-app:latest
