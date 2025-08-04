@@ -21,7 +21,7 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    # Step 3: Build Spring Boot app
+    # Step 3: Build Spring Boot app using Maven
     - name: Build with Maven
       run: mvn clean package --no-transfer-progress
 
@@ -38,27 +38,27 @@ jobs:
         echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
         docker push $DOCKER_USERNAME/finance-me-app:latest
 
-    # Step 6: Authenticate to Google Cloud (via service account JSON)
+    # Step 6: Authenticate to Google Cloud using service account JSON
     - name: Authenticate to GCP
       uses: google-github-actions/auth@v2
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
-    # Step 7: Set up gcloud and kubectl
+    # Step 7: Set up gcloud and install kubectl
     - name: Set up gcloud & kubectl
       uses: google-github-actions/setup-gcloud@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         install_components: 'kubectl'
-        export_default_credentials: true
 
+    # Step 8: Get cluster credentials to enable kubectl
     - name: Get GKE credentials
       run: |
         gcloud container clusters get-credentials finance-cluster \
           --zone asia-south1-a \
           --project ${{ secrets.GCP_PROJECT_ID }}
 
-    # Step 8: Deploy to Kubernetes on GKE
+    # Step 9: Deploy to GKE
     - name: Deploy to GKE
       run: |
         kubectl apply -f k8s/deployment.yaml
