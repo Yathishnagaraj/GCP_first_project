@@ -1,4 +1,4 @@
-name: Build, Push & Deploy to GKE
+name: CI/CD for GKE
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
     - name: Build Docker Image
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/finance-me-app:latest .
 
-    - name: DockerHub Login & Push
+    - name: Push to DockerHub
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -33,12 +33,12 @@ jobs:
         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         docker push $DOCKER_USERNAME/finance-me-app:latest
 
-    - name: Setup gcloud
+    - name: Authenticate to GCP
       uses: google-github-actions/auth@v2
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-    - name: Configure kubectl
+    - name: Set up gcloud + kubectl
       uses: google-github-actions/setup-gcloud@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
