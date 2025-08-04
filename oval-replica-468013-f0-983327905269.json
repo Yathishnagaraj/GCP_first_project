@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "oval-replica-468013-f0",
+  "private_key_id": "98332790526977a78ed944f787142734edcaf48b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDNTsiiVKEAKmiP\nw908qR0SYpiV3PaqNVh7k7F8fUeJbmctre5MU6bILeV/3kJT49Ih/Fk3hoModeqN\nyQRtpZygYRgbQJT/LrIdqdePtZyALvc6davmtbnEqvyIai1JFHhi1rqwwyxA/GC+\nsGPJxMsOK3iUcYzw5TbcQlmBdGBfIellBkMDo5DLB58zLOnI56rpEfe/OIj1slak\nUOa/Hj/3sUhb3F5nEs56RAOW6nJ+6f9hTGBSbHeJlb+UG9FBjHRczi2bBO+wJYNT\n3ae/lTcTUsXJ3a7XGGpAkJljoXdrljkuw4YHI+dXDV1jhN49DRZPfaNFe4ikSg5v\nbanacHwFAgMBAAECggEACQkV1uETGdsD8YnM74nAzAmXTgckuu5wl7WzCrfHwXJg\nq5e7RFQtI6OzdTpuoFsHKTQ+J+2tUYdI/JbzcTDn8P387dwcgpOHRrtuD3bObazD\neCjsGRH33EIrLYTAu/Xg63aoTjW0uaJxzoqcRam5xwSeQKgzq/lmffCUmFgrEpyr\nBjMdWpO826Oksug7zDikUwbugGVGZy46xCw4NmExcgCyTVdSoP4/VFM+6HR07hL7\nSfIF4HaxT5OrrF2lKSRwFDCpIesdnejkMiU/kX92D8v/JSHOx646qLlmBTCqxFEU\n1k8R/5Hou9nIVdAu9Gqod0tDUkV9sIW99hYHl8i/YQKBgQDp7em/UDPGXIFDZCeV\ndbIOwWxXaLBBJTdPsQxBgqsAKA1u3Avjbe8ik1CsdUF9dv/f8ZQUFMBwAxrcoVUz\nESGnJYJOOlBVyetYmzkkD1Nme8sr3Rm4XSfXvMQpaTogmC2BW7uVu/QH4CMjJ97Y\nYTEmVC+aqw67Z0NCeGyiQOiWYQKBgQDgrZMAY4Y1N+qaVYoX0X6+EU04jQyuShEw\nJIICcgB02UelwAUHGAm/bCW2QxyNZz+WLcRt1kNK+sbXUV0PazA5VX9HdimxISO5\nVGrvmKUV0oa9tH9FoJIgPkBsG/tedd8m3scHg31rnMTMrNAuaY0WIS8it5lALb57\nkMF2kErAJQKBgDVbEomUXXrM9p7MZUrtwWMkMvXs5ua0+lyu4UC/8QjkGcxDXGLP\nXE/ikfAD/qADWHFXxJKf+RSTYLkaAzjWm3poT8RQAKrQl2FqZioXZMpnSfwDPi6S\n8NeAMq3PVnbAvwBWT/7jE9IICXunSGjKIk+/u+vnQED2WJz8oqqPa32BAoGAG4oL\nB7QrQiCtd+deOtcp4uA6B+F6GW7otm7zJJuWpLvxRUbJFvqCT11RLgsB1+884wqP\nFit6Khmc/81wS7CGw7BQHpFEQPrf5xqK1P1v1sHsVBposz8gSiV3PgkcAZMPHDOY\nT7p1SBh6IuBX0CiN65V7spSwiyZQP9MZc4/yKaUCgYBH6EYFovugyASSFtnSACEw\nh5qcY9ToJFnsabNJqvdLCKYPOfA0oQu7qrIciBzv0dtf+2wCPCEl8uioEPo3P+H5\n44SFdQlncTplXr58gBZmjTJZdr0OJK4TMfiIjLaoh4eZO8u/1hUEr3LiSxkkFlaA\nsCqc4eMKIu7v+FJsvCTtiA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "github-deployer@oval-replica-468013-f0.iam.gserviceaccount.com",
+  "client_id": "102706146828167049905",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github-deployer%40oval-replica-468013-f0.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
