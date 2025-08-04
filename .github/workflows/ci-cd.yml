@@ -1,15 +1,15 @@
-name: CI/CD Pipeline
+name: CI/CD on GCP VM
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-test-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Set up Java
@@ -18,13 +18,13 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Build with Maven
+    - name: Build using Maven
       run: mvn clean install
 
-    - name: Build Docker Image
+    - name: Docker build
       run: docker build -t finance-me-app .
 
-    - name: Push Docker Image to DockerHub
+    - name: Login & Push to DockerHub
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
